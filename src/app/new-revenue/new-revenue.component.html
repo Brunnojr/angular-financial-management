@@ -1,0 +1,18 @@
+<div data-component="new-revenue">
+  <form [formGroup]="newRevenueForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Descrição</mat-label>
+      <input matInput name="description" formControlName="description" placeholder="" value="Sushi" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Valor</mat-label>
+      <input matInput name="value" formControlName="value" placeholder="" value="Sushi" required>
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button color="primary" type="submit" class="btn btn-primary" value="Salvar">Salvar</button>
+
+  </form>
+</div>
