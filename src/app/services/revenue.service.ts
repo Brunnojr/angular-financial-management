@@ -10,7 +10,7 @@ export class RevenueService {
 
   constructor(
     public http: HttpClient
-    ) { }
+  ) { }
 
   baseUrl = 'http://localhost:3000/';
 
@@ -18,7 +18,19 @@ export class RevenueService {
     return this.http.get<Revenue[]>(`${this.baseUrl}revenues`);
   }
 
+  getRevenuesById(revenueId): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}revenues/${revenueId}`)
+  }
+
   createRevenue(payload: Revenue): Observable<Revenue> {
-    return this.http.post<Revenue>(this.baseUrl + 'revenues', payload)
+    return this.http.post<Revenue>(this.baseUrl + 'revenues', payload);
+  }
+
+  deleteRevenue(revenueId: Revenue): Observable<Revenue>{
+    return this.http.delete<Revenue>(`${this.baseUrl}revenues/${revenueId}`);
+  }
+
+  editRevenue(revenueId, payload: Revenue): Observable<Revenue>{
+    return this.http.put<Revenue>(`${this.baseUrl}revenues/${revenueId}`, payload);
   }
 }

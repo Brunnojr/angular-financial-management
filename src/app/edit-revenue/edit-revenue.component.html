@@ -1,0 +1,18 @@
+<div data-component="edit-revenue" *ngIf="revenueItem">
+  <form [formGroup]="editRevenueForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Descrição</mat-label>
+      <input matInput name="description" formControlName="description" [(ngModel)]="revenueItem.description" placeholder="" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" name="value" formControlName="value" [(ngModel)]="revenueItem.value" placeholder="" required>
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button color="primary" type="submit" class="btn btn-primary" value="Salvar">Salvar</button>
+
+  </form>
+</div>

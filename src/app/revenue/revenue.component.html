@@ -2,6 +2,8 @@
 
   <button mat-raised-button color="primary" (click)="createRevenue()">Adicionar nova receita</button>
 
+  <h2>Total de receitas no período: {{ totalRevenue | currency:'BRL':true:'1.2-2'}}</h2>
+
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.length > 0;else other_content">
 
     <!-- id Column -->
@@ -19,7 +21,31 @@
     <!-- value Column -->
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef> Valor </th>
-      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.value | currency:'BRL':true:'1.2-2'}} </td>
+    </ng-container>
+
+    <!-- edit Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" width="10px">
+        <button mat-raised-button class="edit-btn" (click)="editRevenue(element.id)">
+          <span class="material-icons">
+            edit
+          </span>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- delete Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" width="10px">
+        <button mat-raised-button class="delete-btn" (click)="deleteRevenue(element.id)">
+          <span class="material-icons">
+            delete
+          </span>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

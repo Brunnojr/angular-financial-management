@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'new-revenue', loadChildren: () => import('./new-revenue/new-revenue.module').then(
       m => m.NewRevenueModule
     )
+  },
+  {
+    path: 'edit-revenue/:id', loadChildren: () => import('./edit-revenue/edit-revenue.module').then(
+      m => m.EditRevenueModule
+    )
   }
 ];
 

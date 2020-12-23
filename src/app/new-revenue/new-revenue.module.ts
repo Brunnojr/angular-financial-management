@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { NewRevenueRoutingModule } from './new-revenue-routing.module';
 import { NewRevenueComponent } from './new-revenue.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [NewRevenueComponent],
   imports: [
+    MatInputModule,
+    MatFormFieldModule,
     CommonModule,
     MatButtonModule,
-    MatFormFieldModule,
     NewRevenueRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [NewRevenueComponent],
 })

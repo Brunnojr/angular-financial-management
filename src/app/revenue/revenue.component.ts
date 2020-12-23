@@ -10,8 +10,9 @@ import { Revenue } from '../core/models/revenue';
 })
 export class RevenueComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'description', 'value'];
+  displayedColumns: string[] = ['id', 'description', 'value', 'edit', 'delete'];
   dataSource: Revenue[] = [];
+  totalRevenue = 0;
 
   constructor(
     public revenueService: RevenueService,
@@ -25,11 +26,27 @@ export class RevenueComponent implements OnInit {
   listRevenues() {
     this.revenueService.getRevenues().subscribe((res) => {
       this.dataSource = res;
+      // preenche a var totalRevenue com o a soma dos valores
+      this.totalRevenue = 0;
+      res.forEach( (array) => {
+        this.totalRevenue = this.totalRevenue + array.value;
+      })
     })
   }
 
   createRevenue() {
     this.router.navigate(['new-revenue']);
+  }
+
+  editRevenue(id) {
+    // passa o id na rota
+    this.router.navigate(['edit-revenue', id]);
+  }
+
+  deleteRevenue(id) {
+    this.revenueService.deleteRevenue(id).subscribe(() => {
+      this.listRevenues()
+    })
   }
 
 }

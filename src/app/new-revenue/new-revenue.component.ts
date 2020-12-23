@@ -32,8 +32,6 @@ export class NewRevenueComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('formValue', this.newRevenueForm.value)
-
     const payload = this.newRevenueForm.value
 
     // Limpa o form após o envio
