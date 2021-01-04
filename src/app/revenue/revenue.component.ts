@@ -10,7 +10,7 @@ import { Revenue } from '../core/models/revenue';
 })
 export class RevenueComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'description', 'value', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'description', 'value', 'revenueDate' ,'edit', 'delete'];
   dataSource: Revenue[] = [];
   totalRevenue = 0;
 

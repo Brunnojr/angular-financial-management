@@ -6,9 +6,18 @@
       <input matInput name="description" formControlName="description" placeholder="" required>
     </mat-form-field>
     <br>
+
     <mat-form-field class="example-full-width">
       <mat-label>Valor</mat-label>
       <input matInput name="value" formControlName="value" placeholder="" type="number" required>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field  class="example-full-width">
+      <mat-label>Data do recebimento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="revenueDate" name="revenueDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <br>
 

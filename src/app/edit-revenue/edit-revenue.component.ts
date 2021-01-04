@@ -30,6 +30,7 @@ export class EditRevenueComponent implements OnInit {
     this.editRevenueForm = this.formBuilder.group({
       description: [revenue.description, Validators.required],
       value: [revenue.value, Validators.required],
+      revenueDate: [revenue.revenueDate, Validators.required],
     })
   }
 

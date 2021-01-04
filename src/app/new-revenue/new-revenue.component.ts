@@ -28,6 +28,7 @@ export class NewRevenueComponent implements OnInit {
     this.newRevenueForm = this.formBuilder.group({
       description: [revenue.description, Validators.required],
       value: [revenue.value, Validators.required],
+      revenueDate: ['', Validators.required]
     })
   }
 

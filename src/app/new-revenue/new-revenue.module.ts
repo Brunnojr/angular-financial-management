@@ -7,14 +7,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [NewRevenueComponent],
   imports: [
-    MatInputModule,
-    MatFormFieldModule,
-    CommonModule,
+    MatDatepickerModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    CommonModule,
     NewRevenueRoutingModule,
     ReactiveFormsModule,
     FormsModule,
