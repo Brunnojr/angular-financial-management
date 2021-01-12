@@ -2,6 +2,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
+import { RevenueResolve } from './resolvers/revenue-resolve';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -19,7 +20,10 @@ const routes: Routes = [
   {
     path: 'edit-revenue/:id', loadChildren: () => import('./edit-revenue/edit-revenue.module').then(
       m => m.EditRevenueModule
-    )
+    ),
+    resolve: {
+      revenue: RevenueResolve
+    }
   }
 ];
 

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,6 +14,8 @@ export class EditRevenueComponent implements OnInit {
   editRevenueForm: FormGroup
   revenueItem
 
+  revenue: Revenue;
+
   constructor(
     private revenueService: RevenueService,
     private formBuilder: FormBuilder,
@@ -21,8 +24,15 @@ export class EditRevenueComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getRevenuesById()
-    this.editForm(new Revenue())
+
+    const revenueEdit = this.route.snapshot.data['revenue'];
+    console.log('revenueEdit:',revenueEdit);
+    if (revenueEdit) {
+      this.revenue = revenueEdit;
+      this.getRevenuesById()
+      this.editForm(new Revenue())
+    }
+
   }
 
   editForm(revenue: Revenue) {
