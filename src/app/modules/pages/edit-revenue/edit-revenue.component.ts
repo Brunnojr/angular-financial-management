@@ -2,8 +2,8 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Revenue } from '../core/models/revenue';
-import { RevenueService } from '../services/revenue.service';
+import { Revenue } from '../../../core/models/revenue';
+import { RevenueService } from '../../../services/revenue.service';
 
 @Component({
   selector: 'app-edit-revenue',

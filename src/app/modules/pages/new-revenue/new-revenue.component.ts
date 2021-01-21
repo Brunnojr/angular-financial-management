@@ -1,8 +1,8 @@
-import { RevenueService } from './../services/revenue.service';
+import { RevenueService } from '../../../services/revenue.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Revenue } from '../core/models/revenue';
+import { Revenue } from '../../../core/models/revenue';
 
 @Component({
   selector: 'app-new-revenue',

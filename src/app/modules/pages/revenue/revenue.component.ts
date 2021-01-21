@@ -1,7 +1,7 @@
-import { RevenueService } from './../services/revenue.service';
+import { RevenueService } from '../../../services/revenue.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Revenue } from '../core/models/revenue';
+import { Revenue } from '../../../core/models/revenue';
 
 @Component({
   selector: 'app-revenue',
