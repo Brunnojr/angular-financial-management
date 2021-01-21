@@ -12,6 +12,10 @@ import { Revenue } from '../../../core/models/revenue';
 })
 export class NewRevenueComponent implements OnInit {
   newRevenueForm: FormGroup
+  options = [
+    {value: 'despesa', viewValue: 'Despesa'},
+    {value: 'receita', viewValue: 'Receita'}
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,6 +30,7 @@ export class NewRevenueComponent implements OnInit {
   createForm(revenue: Revenue) {
     // adicionar validators
     this.newRevenueForm = this.formBuilder.group({
+      releaseType: ['', Validators.required],
       description: [revenue.description, Validators.required],
       value: [revenue.value, Validators.required],
       revenueDate: ['', Validators.required]

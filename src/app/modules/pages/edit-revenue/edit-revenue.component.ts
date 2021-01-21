@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Revenue } from '../../../core/models/revenue';
@@ -8,13 +8,18 @@ import { RevenueService } from '../../../services/revenue.service';
 @Component({
   selector: 'app-edit-revenue',
   templateUrl: './edit-revenue.component.html',
-  styleUrls: ['./edit-revenue.component.css']
+  styleUrls: ['./edit-revenue.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditRevenueComponent implements OnInit {
   editRevenueForm: FormGroup
   revenueItem
 
   revenue: Revenue;
+  options = [
+    {value: 'despesa', viewValue: 'Despesa'},
+    {value: 'receita', viewValue: 'Receita'}
+  ];
 
   constructor(
     private revenueService: RevenueService,
@@ -38,6 +43,7 @@ export class EditRevenueComponent implements OnInit {
   editForm(revenue: Revenue) {
     // adicionar validators
     this.editRevenueForm = this.formBuilder.group({
+      releaseType: [revenue.releaseType, Validators.required],
       description: [revenue.description, Validators.required],
       value: [revenue.value, Validators.required],
       revenueDate: [revenue.revenueDate, Validators.required],

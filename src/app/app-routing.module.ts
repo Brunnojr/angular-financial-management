@@ -1,11 +1,9 @@
-import { DashboardComponent } from './modules/pages/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
 import { RevenueResolve } from './core/resolvers/revenue-resolve';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
   // a rota revenue está com lazyloading funcionando
   {
     path: 'revenue', loadChildren: () => import('./modules/pages/revenue/revenue.module').then(

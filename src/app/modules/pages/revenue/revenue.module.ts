@@ -8,6 +8,7 @@ import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     RevenueRoutingModule,
     MatButtonModule,
     MatTableModule,
+    SharedModule
   ],
   exports: [RevenueComponent],
 })

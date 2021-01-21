@@ -3,4 +3,5 @@ export class Revenue {
   id: number;
   value: number;
   revenueDate: Date;
+  releaseType: string;
 }

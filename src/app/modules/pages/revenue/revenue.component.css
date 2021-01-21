@@ -21,3 +21,11 @@ table {
   box-shadow: none;
   color: #c32929;
 }
+
+.receita {
+  color: green;
+}
+
+.despesa {
+  color: red;
+}

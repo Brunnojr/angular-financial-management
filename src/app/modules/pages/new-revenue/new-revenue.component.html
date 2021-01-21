@@ -1,27 +1,44 @@
 <div data-component="new-revenue">
-  <form [formGroup]="newRevenueForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <app-page-title
+        pageTitle="Novo lançamento">
+      </app-page-title>
+    </div>
+    <form [formGroup]="newRevenueForm" (ngSubmit)="onSubmit()">
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Descrição</mat-label>
-      <input matInput name="description" formControlName="description" placeholder="" required>
-    </mat-form-field>
-    <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de lançamento</mat-label>
+        <mat-select name="releaseType" formControlName="releaseType">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Valor</mat-label>
-      <input matInput name="value" formControlName="value" placeholder="" type="number" required>
-    </mat-form-field>
-    <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Descrição</mat-label>
+        <input matInput name="description" formControlName="description" placeholder="" required>
+      </mat-form-field>
+      <br>
 
-    <mat-form-field  class="example-full-width">
-      <mat-label>Data do recebimento</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="revenueDate" name="revenueDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Valor</mat-label>
+        <input matInput name="value" formControlName="value" placeholder="" type="number" required>
+      </mat-form-field>
+      <br>
 
-    <button mat-raised-button color="primary" type="submit" class="btn btn-primary" value="Salvar">Salvar</button>
+      <mat-form-field  class="example-full-width">
+        <mat-label>Data do recebimento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="revenueDate" name="revenueDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
 
-  </form>
+      <button mat-raised-button color="primary" type="submit" class="btn btn-primary" value="Salvar">Salvar</button>
+
+    </form>
+  </div>
 </div>

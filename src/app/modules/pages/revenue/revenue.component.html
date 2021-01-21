@@ -1,80 +1,114 @@
 <div data-component="revenue">
+  <div class="container">
 
-  <h2>Receitas</h2>
+    <div class="row">
+      <app-page-title
+        pageTitle="Lançamentos">
+      </app-page-title>
+    </div>
 
-  <button mat-raised-button color="primary" (click)="createRevenue()">
-    Adicionar nova receita
-    <span class="material-icons">
-      add_circle_outline
-    </span>
-  </button>
-  <br>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Período selecionado</mat-label>
-    <mat-select (selectionChange)="filterAtualMonthRevenues($event)" [(value)]="selected">
-      <mat-option *ngFor="let period of periods" [value]="period.value" >
-        {{period.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.length > 0;else other_content">
-
-    <!-- description Column -->
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> Descrição </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-      <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
-    </ng-container>
-
-    <!-- value Column -->
-    <ng-container matColumnDef="value">
-      <th mat-header-cell *matHeaderCellDef> Valor </th>
-      <td mat-cell *matCellDef="let element"> {{element.value | currency:'BRL':true:'1.2-2'}} </td>
-      <td mat-footer-cell *matFooterCellDef> <b>{{ totalRevenue | currency:'BRL':true:'1.2-2'}}</b></td>
-    </ng-container>
-
-    <!-- Date Column -->
-    <ng-container matColumnDef="revenueDate">
-      <th mat-header-cell *matHeaderCellDef> Data do recebimento </th>
-      <td mat-cell *matCellDef="let element"> {{element.revenueDate | date: 'dd/MM/yyyy'}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-
-    <!-- edit Column -->
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element" width="10px">
-        <button mat-raised-button class="edit-btn" (click)="editRevenue(element.id)">
+    <div class="row">
+        <button mat-raised-button color="primary" (click)="createRevenue()">
+          Adicionar novo lançamento
           <span class="material-icons">
-            edit
+            add_circle_outline
           </span>
         </button>
-      </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
+    </div>
 
-    <!-- delete Column -->
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element" width="10px">
-        <button mat-raised-button class="delete-btn" (click)="deleteRevenue(element.id)">
-          <span class="material-icons">
-            delete
-          </span>
-        </button>
-      </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
+    <div class="row">
+        <mat-form-field appearance="fill">
+          <mat-label>Período selecionado</mat-label>
+          <mat-select (selectionChange)="filterAtualMonthRevenues($event)" [(value)]="selected">
+            <mat-option *ngFor="let period of periods" [value]="period.value" >
+              {{period.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-  </table>
+    <div class="row">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.length > 0;else other_content">
+        <!-- description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Descrição </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
+        </ng-container>
 
-  <ng-template #other_content>
-    <p>Nenhuma receita cadastrada no período.</p>
-  </ng-template>
+        <!-- releaseType Column -->
+        <ng-container matColumnDef="releaseType">
+          <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <td mat-cell *matCellDef="let element"
+            [class.receita]="element.releaseType == 'receita'"
+            [class.despesa]="element.releaseType == 'despesa'"
+          >
+            <span>
+              {{element.releaseType | titlecase }}
+            </span>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <!-- value Column -->
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> Valor </th>
+          <td mat-cell *matCellDef="let element"
+          [class.receita]="element.releaseType == 'receita'"
+          [class.despesa]="element.releaseType == 'despesa'"
+          > {{element.value | currency:'BRL':true:'1.2-2'}} </td>
+          <td mat-footer-cell
+            *matFooterCellDef
+            [class.receita]="totalSum >= 0"
+            [class.despesa]="totalSum < 0"
+            >
+            <b>{{ totalSum | currency:'BRL':true:'1.2-2'}}</b>
+          </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="revenueDate">
+          <th mat-header-cell *matHeaderCellDef> Data do recebimento </th>
+          <td mat-cell *matCellDef="let element"> {{element.revenueDate | date: 'dd/MM/yyyy'}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <!-- edit Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" width="10px">
+            <button mat-raised-button class="edit-btn" (click)="editRevenue(element.id)">
+              <span class="material-icons">
+                edit
+              </span>
+            </button>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <!-- delete Column -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" width="10px">
+            <button mat-raised-button class="delete-btn" (click)="deleteRevenue(element.id)">
+              <span class="material-icons">
+                delete
+              </span>
+            </button>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </table>
+
+      <ng-template #other_content>
+        <p>Nenhum lançamento cadastrada no período.</p>
+      </ng-template>
+    </div>
+
+  </div>
 
 </div>

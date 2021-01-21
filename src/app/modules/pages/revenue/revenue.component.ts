@@ -10,13 +10,15 @@ import { Revenue } from '../../../core/models/revenue';
 })
 export class RevenueComponent implements OnInit {
 
-  displayedColumns: string[] = ['description', 'value', 'revenueDate' ,'edit', 'delete'];
+  displayedColumns: string[] = ['description', 'value', 'revenueDate', 'releaseType','edit', 'delete'];
   dataSource: Revenue[] = [];
   totalRevenue = 0;
+  totalExpense = 0;
+  totalSum = 0;
+  total
   actualMonth;
   selected = new Date().getMonth();
   atualTeste = {value: 0}
-
   periods = [
     {value: 0, viewValue: 'Janeiro'},
     {value: 1, viewValue: 'Fevereiro'},
@@ -143,8 +145,15 @@ export class RevenueComponent implements OnInit {
       this.dataSource = resAtualMonth
       // preenche a var totalRevenue com o a soma dos valores do mes
       this.totalRevenue = 0;
+      this.totalExpense = 0;
       resAtualMonth.forEach( (array) => {
-        this.totalRevenue = this.totalRevenue + array.value;
+        if(array.releaseType == 'receita') {
+          // this.totalRevenue = this.totalRevenue + array.value;
+          this.totalRevenue = this.totalRevenue + array.value;
+        } else {
+          this.totalExpense = this.totalExpense + array.value;
+        }
+        this.totalSum = this.totalRevenue - this.totalExpense;
       })
     })
     this.selected = new Date().getMonth();

@@ -1,26 +1,45 @@
 <div data-component="edit-revenue" *ngIf="revenueItem">
-  <form [formGroup]="editRevenueForm" (ngSubmit)="onSubmit()">
+  <div class="container">
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Descrição</mat-label>
-      <input matInput name="description" formControlName="description" [(ngModel)]="revenueItem.description" placeholder="" required>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Valor</mat-label>
-      <input matInput type="number" name="value" formControlName="value" [(ngModel)]="revenueItem.value" placeholder="" required>
-    </mat-form-field>
-    <br>
+    <div class="row">
+      <app-page-title
+        pageTitle="Editar lançamento">
+      </app-page-title>
+    </div>
 
-    <mat-form-field  class="example-full-width">
-      <mat-label>Data do recebimento</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="revenueItem.revenueDate" formControlName="revenueDate" name="revenueDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <br>
+    <form [formGroup]="editRevenueForm" (ngSubmit)="onSubmit()">
 
-    <button mat-raised-button color="primary" type="submit" class="btn btn-primary" value="Salvar">Salvar</button>
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de lançamento</mat-label>
+        <mat-select name="releaseType" formControlName="releaseType" [(ngModel)]="revenueItem.releaseType">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
 
-  </form>
+      <mat-form-field class="example-full-width">
+        <mat-label>Descrição</mat-label>
+        <input matInput name="description" formControlName="description" [(ngModel)]="revenueItem.description" placeholder="" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Valor</mat-label>
+        <input matInput type="number" name="value" formControlName="value" [(ngModel)]="revenueItem.value" placeholder="" required>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field  class="example-full-width">
+        <mat-label>Data do recebimento</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="revenueItem.revenueDate" formControlName="revenueDate" name="revenueDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+
+      <button mat-raised-button color="primary" type="submit" class="btn btn-primary" value="Salvar">Salvar</button>
+
+    </form>
+  </div>
 </div>

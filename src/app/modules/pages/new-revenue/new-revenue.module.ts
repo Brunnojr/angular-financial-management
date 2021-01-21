@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [NewRevenueComponent],
@@ -23,6 +25,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     NewRevenueRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule,
+    MatSelectModule
   ],
   exports: [NewRevenueComponent],
 })
