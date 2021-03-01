@@ -29,3 +29,9 @@ table {
 .despesa {
   color: red;
 }
+
+.revenue-type {
+  border: 1px solid;
+  padding: 3px;
+  border-radius: 3px;
+}

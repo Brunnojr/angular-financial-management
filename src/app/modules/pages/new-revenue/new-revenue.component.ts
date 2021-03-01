@@ -17,6 +17,16 @@ export class NewRevenueComponent implements OnInit {
     {value: 'receita', viewValue: 'Receita'}
   ];
 
+  categories = [
+    {value: 'Renda principal', viewValue: 'Renda principal'},
+    {value: 'Renda extra', viewValue: 'Renda extra'},
+    {value: 'Social', viewValue: 'Social'},
+    {value: 'Saúde', viewValue: 'Saúde'},
+    {value: 'Livre', viewValue: 'Livre'},
+    {value: 'Essenciais', viewValue: 'Essenciais'},
+    {value: 'Carro', viewValue: 'Carro'},
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
@@ -31,6 +41,7 @@ export class NewRevenueComponent implements OnInit {
     // adicionar validators
     this.newRevenueForm = this.formBuilder.group({
       releaseType: ['', Validators.required],
+      category: ['', Validators.required],
       description: [revenue.description, Validators.required],
       value: [revenue.value, Validators.required],
       revenueDate: ['', Validators.required]

@@ -19,6 +19,16 @@
       </mat-form-field>
       <br>
 
+      <mat-form-field appearance="fill">
+        <mat-label>Categoria</mat-label>
+        <mat-select name="category" formControlName="category" [(ngModel)]="revenueItem.category">
+          <mat-option *ngFor="let category of categories" [value]="category.value">
+            {{category.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
       <mat-form-field class="example-full-width">
         <mat-label>Descrição</mat-label>
         <input matInput name="description" formControlName="description" [(ngModel)]="revenueItem.description" placeholder="" required>
